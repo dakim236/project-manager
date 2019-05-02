@@ -1,0 +1,3 @@
+adias_pr_manager_homepage:
+    path:     /
+    defaults: { _controller: adiasPrManagerBundle:Default:index }

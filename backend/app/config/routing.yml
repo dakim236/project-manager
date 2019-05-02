@@ -1,0 +1,7 @@
+adias_pr_manager:
+    resource: "@adiasPrManagerBundle/Resources/config/routing.yml"
+    prefix:   /pr
+
+pr_manager:
+    resource: "@PrManagerBundle/Resources/config/routing.yml"
+    prefix:   /

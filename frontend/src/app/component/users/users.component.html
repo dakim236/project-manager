@@ -1,0 +1,29 @@
+<ul class="list-group"   style= "margin-top: 150px;">
+  <li style="display: block;"><a routerLink="/create-user"> <button class="btn btn-primary">Add User</button></a></li><br>
+</ul>
+
+<table class="table table-striped; mat-elevation-z8" style="width: 100%;">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Tel</th>
+    <th>Email</th>
+    <th>Domaine</th>
+    <th>Role</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor = "let user of users">
+    <td>{{user.id}}</td>
+    <td>{{user.nom}}</td>
+    <td>{{user.prenom}}</td>
+    <td>{{user.tel}}</td>
+    <td>{{user.mail}}</td>
+    <td>{{user.domaine}}</td>
+    <td>{{user.x_eb_role?.libelle}}</td>
+    <td><button class="btn btn-primary" (click)="editUser(user.id)" style="margin-left: 20px;"> Edit</button>|
+        <button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button></td>
+  </tr>
+
+
+

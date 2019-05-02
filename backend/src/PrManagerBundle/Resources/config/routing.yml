@@ -1,0 +1,33 @@
+pr_manager_homepage:
+    path:     /accueil
+    defaults: { _controller: PrManagerBundle:User:index }
+
+pr_manager_create:
+    path:     /user/create
+    defaults: { _controller: PrManagerBundle:User:create }
+
+pr_manager_liste:
+    path:     /user/liste
+    defaults: { _controller: PrManagerBundle:User:liste }
+
+pr_manager_update:
+    path:     /user/update/{id}
+    defaults: { _controller: PrManagerBundle:User:update}
+
+pr_manager_remove:
+    path:     /user/remove
+    defaults: { _controller: PrManagerBundle:User:remove }
+
+
+pr_manager_create:
+    path:     /project/create
+    defaults: { _controller: PrManagerBundle:Project:create }
+
+pr_manager_liste:
+    path:     /liste
+    defaults: { }
+
+pr_manager_remove:
+    path:     /remove
+    defaults: { }
+

@@ -1,0 +1,31 @@
+<div class="col-md-6">
+  <h2 class="text-center">Modifier l'utilisateur</h2>
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input formControlName="nom" type="nom" placeholder="Votre nom" name="nom" class="form-control" id="nom">
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prenom</label>
+      <input formControlName="prenom" type="prenom" placeholder="Votre prenom" name="prenom" class="form-control" id="prenom">
+    </div>
+    <div class="form-group">
+      <label for="tel">Tel</label>
+      <input formControlName="tel" type="tel" placeholder="téléphone" name="tel" class="form-control" id="tel">
+    </div>
+    <div class="form-group">
+      <label for="tel">Tel</label>
+      <input formControlName="tel" type="tel" placeholder="téléphone" name="tel" class="form-control" id="tel">
+    </div>
+    <div class="form-group">
+      <label for="mail">Mail</label>
+      <input formControlName="mail" type="tel" placeholder="Email" name="mail" class="form-control" id="mail">
+    </div>
+    <div class="form-group">
+      <select name="domaine" formControlName="domaine" class="form-control" placeholder="domaine">
+        <option *ngFor="let domaine of domaines" [value]="domaine">{{domaine}}</option>
+      </select>
+    </div>
+    <button class="btn btn-success">Modifier</button>
+  </form>
+</div>
