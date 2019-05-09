@@ -7,8 +7,7 @@ export class eb_user {
     tel: string;
     mail: string;
     domaine: string;
-    //client: eb_user[];
-    x_eb_role : string;
+    x_eb_role : EbRole;
 
 
     constructor(){

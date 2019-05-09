@@ -1,31 +1,29 @@
 <div class="col-md-6">
-  <h2 class="text-center">Modifier l'utilisateur</h2>
-  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="nom">Nom</label>
-      <input formControlName="nom" type="nom" placeholder="Votre nom" name="nom" class="form-control" id="nom">
-    </div>
-    <div class="form-group">
-      <label for="prenom">Prenom</label>
-      <input formControlName="prenom" type="prenom" placeholder="Votre prenom" name="prenom" class="form-control" id="prenom">
-    </div>
-    <div class="form-group">
-      <label for="tel">Tel</label>
-      <input formControlName="tel" type="tel" placeholder="téléphone" name="tel" class="form-control" id="tel">
-    </div>
-    <div class="form-group">
-      <label for="tel">Tel</label>
-      <input formControlName="tel" type="tel" placeholder="téléphone" name="tel" class="form-control" id="tel">
-    </div>
-    <div class="form-group">
-      <label for="mail">Mail</label>
-      <input formControlName="mail" type="tel" placeholder="Email" name="mail" class="form-control" id="mail">
-    </div>
-    <div class="form-group">
-      <select name="domaine" formControlName="domaine" class="form-control" placeholder="domaine">
-        <option *ngFor="let domaine of domaines" [value]="domaine">{{domaine}}</option>
-      </select>
-    </div>
-    <button class="btn btn-success">Modifier</button>
-  </form>
+  <div class="panel-heading">{{title}}</div>
+  <div class="panel-body">
+    <form [formGroup]="updateForm">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input formControlName="nom" #nom [(ngModel)] ="user.nom" name="nom" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input formControlName="prenom" #prenom [(ngModel)]="user.prenom" name="prenom" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="tel">Tel</label>
+        <input formControlName="tel" #tel [(ngModel)]="user.tel" name="tel" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="mail">Mail</label>
+        <input formControlName="mail" #mail [(ngModel)]="user.mail" name="mail" class="form-control">
+      </div>
+      <div class="form-group">
+        <select name="domaine" formControlName="domaine" #domaine [(ngModel)]="user.domaine">
+          <option *ngFor="let domaine of domaines" [value]="domaine">{{domaine}}</option>
+        </select>
+      </div>
+      <button (click)=" updateUser()" class="btn btn-success">Modifier</button>
+    </form>
+  </div>
 </div>

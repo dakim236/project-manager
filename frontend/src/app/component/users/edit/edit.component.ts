@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { eb_user } from 'src/app/classes/eb_user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CreateService } from 'src/app/services/create.service';
 import { first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { listUsers } from 'src/app/classes/listUser';
 
 @Component({
   selector: 'app-edit',
@@ -12,22 +14,20 @@ import { first } from 'rxjs/operators';
 })
 export class EditComponent implements OnInit {
 
-  user: eb_user[];
+  user: eb_user;
   updateForm: FormGroup;
+  title = 'Edit User';
+  domaines = ['développement','modélisation'];
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private createService: CreateService) { }
+              private route: ActivatedRoute,
+              private createService: CreateService) {
+                this.createForm();
+               }
 
-  ngOnInit() {
-    var userId = localStorage.getItem("editUserId");
-    if(!userId){
-      alert("erreur")
-      this.router.navigate(['liste-user']);
-      return;
-    }
+  createForm(){
     this.updateForm = this.formBuilder.group({
-      id: [],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       tel: ['', Validators.required],
@@ -36,23 +36,27 @@ export class EditComponent implements OnInit {
       //client: eb_user[];
       //x_eb_role : ['', Validators.required],
     });
-    this.createService.getUserById(userId)
-        .subscribe(data => {this.updateForm.setValue(data);});
-        console.log(+userId);
   }
 
-  onSubmit(){
-    this.createService.editUser(this.updateForm.value)
-        .pipe(first())
-        .subscribe(
-          data =>{
-            this.router.navigate(['liste-user']);
-          },
-         error => {
-           alert(error);
-         }
-          
-        );
+  updateUser(){    
+    this.createService.updateUser(this.user).subscribe((res:any) =>{
+      if(res.exist) this.router.navigate(['liste-user']);
+    });
+    
   }
+  ngOnInit() {
+    this.user = new eb_user();
+    this.getUserByRouterParam();    
+  }
+
+  getUserByRouterParam() {
+    this.route.params.subscribe(params =>{
+      this.createService.editUser(params['id']).subscribe((res: any) =>{
+        if(res.exist) this.user = res.data;
+      });
+    });
+  }
+
+  
 
 }
