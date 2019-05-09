@@ -1,0 +1,7 @@
+adias_pr_manager:
+    resource: "@AdiasPrManagerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

@@ -1,0 +1,19 @@
+#création d'une entity
+php bin/console doctrine:generate:entity PrManagerBundle:eb_role
+php bin/console doctrine:schema:update --dump-sql
+php bin/console doctrine:schema:update --force
+
+#ERREUR
+ SQLSTATE[42703]: Undefined column: 7 ERREUR:  la colonne « min_value » n'existe pas
+ LINE 1: SELECT min_value, increment_by FROM "eb_role_id_seq"
+
+#SOLUTION
+ remplacer la ligne 292:  $data = $this->_conn->fetchAll('SELECT min_value, increment_by FROM ' . $this->_platform->quoteIdentifier($sequenceName));
+ par:
+ $version = floatval($this->_conn->getWrappedConnection()->getServerVersion());
+
+       if ($version >= 10) {
+           $data = $this->_conn->fetchAll('SELECT min_value, increment_by FROM pg_sequences WHERE schemaname = \'public\' AND sequencename = '.$this->_conn->quote($sequenceName));
+       }else{
+           $data = $this->_conn->fetchAll('SELECT min_value, increment_by FROM ' . $this->_platform->quoteIdentifier($sequenceName));
+       }

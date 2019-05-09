@@ -1,0 +1,4 @@
+services:
+#    adias_pr_manager.example:
+#        class: Adias\PrManagerBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
